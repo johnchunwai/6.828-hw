@@ -1,0 +1,15 @@
+syscall date changes
+
+SHARED
+- add syscall num define to syscall.h
+
+USER PROGRAMS SIDE
+- add _date to Makefile::UPROGS so it will build (separate user program, not link to kernel)
+- add date.h (already there with struct rcdate)
+- date.c::main frontend which calls date()
+- add date() declaration in user.h
+- update usys.S to add the assembly for the definition of date() which invokes syscall for sys_date
+
+KERNEL SIDE
+- update syscall.c to include the func declaration kernel side
+- implement function in sysproc.c
